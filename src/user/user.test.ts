@@ -1,9 +1,6 @@
-import User, { IUser } from './user';
-
-import setupDB from '../test/setupDB';
-import mockData from '../test/mock';
-
-// import User from './user';
+import { setupDB } from '../utils/testUtils';
+import userMock from './user.mock';
+import User, { IUser } from './user.model';
 
 describe('User Model', () => {
   let testData: IUser;
@@ -11,7 +8,7 @@ describe('User Model', () => {
   setupDB();
 
   beforeEach(() => {
-    testData = mockData.user();
+    testData = userMock();
   });
 
   it('User should be created', async done => {

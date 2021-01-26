@@ -1,7 +1,6 @@
-import Account, { IAccount } from './account';
-
-import setupDB from '../test/setupDB';
-import mockData from '../test/mock';
+import { setupDB } from '../utils/testUtils';
+import accountMock from './account.mock';
+import Account, { IAccount } from './account.model';
 
 describe('Account Model', () => {
   let testAccountData: IAccount;
@@ -9,7 +8,7 @@ describe('Account Model', () => {
   setupDB();
 
   beforeEach(() => {
-    testAccountData = mockData.account();
+    testAccountData = accountMock();
   });
 
   it('Account should be created', async done => {
