@@ -1,9 +1,16 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { SchemaFields } from 'utils/tsUtils';
 
+export enum accountType {
+  savings = 'Savings',
+  checking = 'Checking',
+  cash = 'Cash',
+  cc = 'CC',
+}
+
 export interface IAccount {
   name: string;
-  type: string;
+  type: accountType;
   startingBal: number;
   amount: number;
 }
@@ -17,6 +24,7 @@ const accountSchemaFields: SchemaFields<IAccount> = {
   },
   type: {
     type: String,
+    enum: Object.values(accountType),
     required: true,
   },
   startingBal: {

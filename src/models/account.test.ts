@@ -3,8 +3,6 @@ import Account, { IAccount } from './account';
 import setupDB from '../test/setupDB';
 import mockData from '../test/mock';
 
-// import Account from './account';
-
 describe('Account Model', () => {
   let testAccountData: IAccount;
 
