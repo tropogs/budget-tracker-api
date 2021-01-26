@@ -13,6 +13,15 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "ignoreRestSiblings": true
+      }
+    ],
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
     "linebreak-style": "off",
     "import/no-unresolved": "off",
     "arrow-parens": ["error", "as-needed"],

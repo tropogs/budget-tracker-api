@@ -1,6 +1,7 @@
 import faker from 'faker';
 import mongoose from 'mongoose';
 import { IUser } from '../models/user';
+import { accountType, IAccount } from '../models/account';
 
 export const generateArray = (numElements: number, generator: () => any) => {
   const arr = new Array(numElements).fill(null).map(() => ({
@@ -35,8 +36,17 @@ const user = (override?: IUser, options?: IUserOptions): IUser => {
   };
 };
 
+const account = (override?: IAccount): IAccount => ({
+  name: faker.finance.accountName(),
+  type: accountType.checking,
+  startingBal: faker.random.number(),
+  amount: faker.random.number(),
+  ...override,
+});
+
 const mockObject = {
   user,
+  account,
 };
 
 export default mockObject;
