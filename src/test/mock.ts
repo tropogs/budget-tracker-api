@@ -2,6 +2,7 @@ import faker from 'faker';
 import mongoose from 'mongoose';
 import { IUser } from '../models/user';
 import { accountType, IAccount } from '../models/account';
+import { ITransaction } from '../models/transaction';
 
 export const generateArray = (numElements: number, generator: () => any) => {
   const arr = new Array(numElements).fill(null).map(() => ({
@@ -44,9 +45,21 @@ const account = (override?: IAccount): IAccount => ({
   ...override,
 });
 
+const transaction = (override?: ITransaction): ITransaction => ({
+  date: faker.date.recent(),
+  userId: new mongoose.Types.ObjectId(),
+  accountId: new mongoose.Types.ObjectId(),
+  envelopeId: new mongoose.Types.ObjectId(),
+  payee: faker.name.findName(),
+  amount: faker.random.number(),
+  note: faker.finance.transactionDescription(),
+  ...override,
+});
+
 const mockObject = {
   user,
   account,
+  transaction,
 };
 
 export default mockObject;
