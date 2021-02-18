@@ -18,7 +18,7 @@ db.once('open', () => {
 });
 
 // Application routing
-app.use('/ping', (req: Request, res: Response, next) => {
+app.use('/ping', (req: Request, res: Response) => {
   res.status(200).send({ data: 'Hello from the other side' });
 });
 
