@@ -1,12 +1,16 @@
 /* eslint-disable no-console */
 import express, { Application, Request, Response } from 'express';
 import mongoose from 'mongoose';
+import accountsRouter from './accounts/account.routes';
 
 // Boot express
 const app: Application = express();
 const port = 5000;
 
-mongoose.connect('mongodb://localhost/tropogs', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost/tropogs', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
@@ -14,9 +18,11 @@ db.once('open', () => {
 });
 
 // Application routing
-app.use('/', (req: Request, res: Response) => {
+app.use('/ping', (req: Request, res: Response) => {
   res.status(200).send({ data: 'Hello from the other side' });
 });
+
+app.use('/accounts', accountsRouter);
 
 // Start server
 app.listen(port, () => console.log(`Server is listening on port ${port}!`));

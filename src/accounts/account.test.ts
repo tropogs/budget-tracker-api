@@ -1,4 +1,4 @@
-import Account, { IAccount } from './account';
+import Account, { IAccount } from './account.model';
 
 import setupDB from '../test/setupDB';
 import mockData from '../test/mock';

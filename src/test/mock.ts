@@ -1,7 +1,7 @@
 import faker from 'faker';
 import mongoose from 'mongoose';
 import { IUser } from '../models/user';
-import { accountType, IAccount } from '../models/account';
+import { accountType, IAccount } from '../accounts/account.model';
 import { ITransaction } from '../models/transaction';
 
 export const generateArray = (numElements: number, generator: () => any) => {
