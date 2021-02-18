@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import express, { Application, Request, Response } from 'express';
 import mongoose from 'mongoose';
-/* import User, { IUser } from './models/user'; */
 import accountsRouter from './accounts/account.routes';
 
 // Boot express
@@ -19,9 +18,8 @@ db.once('open', () => {
 });
 
 // Application routing
-app.use('/', (req: Request, res: Response, next) => {
-  // res.status(200).send({ data: 'Hello from the other side' });
-  next();
+app.use('/ping', (req: Request, res: Response, next) => {
+  res.status(200).send({ data: 'Hello from the other side' });
 });
 
 app.use('/accounts', accountsRouter);
