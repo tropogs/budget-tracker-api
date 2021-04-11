@@ -1,8 +1,9 @@
-import faker from 'faker';
+import faker, { fake } from 'faker';
 import mongoose from 'mongoose';
 import { IUser } from '../models/user';
 import { accountType, IAccount } from '../accounts/account.model';
 import { ITransaction } from '../models/transaction';
+import { IEnvelope } from '../envelopes/envelope.model';
 
 export const generateArray = (numElements: number, generator: () => any) => {
   const arr = new Array(numElements).fill(null).map(() => ({
@@ -56,10 +57,33 @@ const transaction = (override?: ITransaction): ITransaction => ({
   ...override,
 });
 
+const envelope = (override?: IEnvelope): IEnvelope => ({
+  name: faker.company.companyName(),
+  activity: {
+    [faker.random.number()]: {
+      date: faker.date.recent(),
+      amount: faker.random.number(),
+    },
+  },
+  budgeted: {
+    [faker.random.number()]: {
+      date: faker.date.recent(),
+      amount: faker.random.number(),
+    },
+  },
+  goal: {
+    type: faker.finance.transactionType(),
+    amount: faker.random.number(),
+  },
+  userId: new mongoose.Types.ObjectId(),
+  ...override,
+});
+
 const mockObject = {
   user,
   account,
   transaction,
+  envelope,
 };
 
 export default mockObject;
